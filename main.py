@@ -66,14 +66,14 @@ def flag(minname, dir):
 
 def uploadDisk(minname):
     now = datetime.datetime.now()
+    dir = (f"/json/{now.day}.{now.month}.{now.year}.{now.microsecond}")
     print("|__________dump to json folder on yadisk__________|\n")
     if y.check_token():
-        if not y.is_dir(f"/json/{now.day}.{now.month}.{now.year}.{now.microsecond}"):
-            y.mkdir(f"/json/{now.day}.{now.month}.{now.year}.{now.microsecond}")
-            dir = (f"/json/{now.day}.{now.month}.{now.year}.{now.microsecond}")
-            print(f"[+] Dir /json/{now.day}.{now.month}.{now.year}.{now.microsecond} create\n")
+        if not y.is_dir(dir):
+            y.mkdir(dir)
+            print(f"[+] Dir {dir} create\n")
         else:
-            print(f"[-] Dir /json/{now.day}.{now.month}.{now.year}.{now.microsecond} already created\n")
+            print(f"[-] Dir {dir} already created\n")
             print("[?] try again…")
             uploadDisk()
     flag(minname, dir)
